@@ -55,24 +55,47 @@ You have brilliant brainstorming sessions with AI, but:
 
 ---
 
+
 ## 📦 Installation
 
 ### Prerequisites
 - Windows OS (macOS/Linux support planned)
 - Chrome, Edge, or Brave Browser
 
+---
+
 ### Step 1: Install the Backend (The Brain)
 
-You have two options:
-
-**Option A: Download Executable (Recommended for Users)**
+**Option A: For Users (Recommended)**
 1. Go to the [Releases](https://github.com/yourusername/chatlog/releases) page.
-2. Download `ChatLog.exe`.
+2. Download **`ChatLog_v1.0.exe`**.
 3. Run it. You will see a small icon in your system tray.
+   *(Note: Windows might show a "PC protected" warning because this is a new open-source app. Click "More info" -> "Run anyway".)*
 
-**Option B: Run from Source (For Developers)**
+**Option B: For Developers (Source Code)**
 ```bash
 git clone [https://github.com/yourusername/chatlog.git](https://github.com/yourusername/chatlog.git)
 cd chatlog/backend
 pip install -r requirements.txt
 python main.py
+
+```
+
+---
+
+### Step 2: Install the Extension (The Eyes)
+
+**Option A: For Users (Recommended)**
+
+1. Go to the [Releases](https://www.google.com/url?sa=E&source=gmail&q=https://github.com/yourusername/chatlog/releases) page.
+2. Download **`ChatLog_v1.0.zip`** and **unzip** it.
+3. Open your browser and go to `chrome://extensions` (or `edge://extensions`).
+4. Toggle on **Developer mode** (top right).
+5. Click **Load unpacked**.
+6. Select the unzipped folder.
+
+**Option B: For Developers**
+
+1. Follow the steps above, but select the `extension/` folder from the cloned repository.
+
+---
