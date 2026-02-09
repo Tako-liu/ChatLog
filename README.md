@@ -4,7 +4,6 @@
 
 ### ✨ _Markdown Is All You Need_ ✨
 
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 **Zero-Interaction AI Conversation Archiver**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
