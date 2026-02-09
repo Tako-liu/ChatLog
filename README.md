@@ -72,15 +72,6 @@ You have brilliant brainstorming sessions with AI, but:
 3. Run it. You will see a small icon in your system tray.
    *(Note: Windows might show a "PC protected" warning because this is a new open-source app. Click "More info" -> "Run anyway".)*
 
-**Option B: For Developers (Source Code)**
-```bash
-git clone [https://github.com/yourusername/chatlog.git](https://github.com/yourusername/chatlog.git)
-cd chatlog/backend
-pip install -r requirements.txt
-python main.py
-
-```
-
 ---
 
 ### Step 2: Install the Extension (The Eyes)
@@ -93,9 +84,5 @@ python main.py
 4. Toggle on **Developer mode** (top right).
 5. Click **Load unpacked**.
 6. Select the unzipped folder.
-
-**Option B: For Developers**
-
-1. Follow the steps above, but select the `extension/` folder from the cloned repository.
 
 ---
