@@ -1,16 +1,17 @@
 <div align="center">
 
-# 🤫 Silent AI Archiver
+# 🧠 ChatLog
 
-**Zero-Interaction AI Conversation Archive Tool**
+**Zero-Interaction AI Conversation Archiver**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
-[![Platform](https://img.shields.io/badge/platform-Windows-lightgrey.svg)](https://github.com/yourusername/silent-ai-archiver)
+[![Platform](https://img.shields.io/badge/platform-Windows-lightgrey.svg)](https://github.com/yourusername/chatlog)
+[![Status](https://img.shields.io/badge/status-stable-green.svg)]()
 
-*Automatically archive your ChatGPT and Gemini conversations to Markdown files — completely hands-free.*
+*Automatically archive your ChatGPT and Gemini conversations to local Markdown files — completely hands-free.*
 
-[Features](#-features) • [Installation](#-installation) • [How It Works](#-how-it-works) • [Documentation](#-documentation) • [Contributing](#-contributing)
+[Features](#-features) • [Installation](#-installation) • [Usage Guide](#-usage-guide) • [How It Works](#-how-it-works) • [Contributing](#-contributing)
 
 </div>
 
@@ -18,254 +19,58 @@
 
 ## 🎯 The Problem
 
-Ever wanted to save your AI conversations for reference, but found manual copy-pasting tedious? Traditional archiving methods require constant manual intervention, breaking your workflow.
+You have brilliant brainstorming sessions with AI, but:
+- ❌ **Manual Copying** breaks your flow.
+- ❌ **Cloud History** is hard to search and manage.
+- ❌ **Privacy Risk**: You don't truly own your data if it's only on their servers.
 
-## 💡 The Solution: Zero-Interaction™
+## 💡 The Solution: ChatLog
 
-**Silent AI Archiver** runs invisibly in the background. Once set up, it automatically saves every conversation — no buttons to click, no shortcuts to remember, no workflow interruption.
+**ChatLog** runs invisibly in the background. It automatically syncs your conversations to your local hard drive as **Markdown** files.
 
-> **"Set it and forget it."** Your conversations are safely archived while you focus on what matters.
+> **"Set it and forget it."** Your second brain, safely archived locally.
 
 ---
 
 ## ✨ Features
 
 ### 🔇 Zero-Interaction Design
-- **No Manual Saves** — Conversations are automatically captured
-- **Smart Debouncing** — Waits 5 seconds after typing stops to avoid partial saves
-- **Lifecycle Hooks** — Saves on tab close and conversation switches
-- **Invisible Operation** — No console windows, just a tiny 3px status indicator
+- **Fully Automated** — Conversations are captured as you type.
+- **Smart Debouncing** — Waits 3-5 seconds after typing stops to ensure completeness.
+- **Lifecycle Hooks** — Triggers save on tab close or conversation switch.
+- **Invisible Operation** — No annoying popups, just a tiny status indicator.
 
 ### 🚀 Technical Highlights
-- **🎨 Minimal UI** — 3-pixel status dot (🟢 success, 🟡 waiting, 🔴 error)
-- **📝 Markdown Export** — Clean, readable format with YAML frontmatter
-- **🔄 Smart Overwrite** — Always keeps the latest version of each conversation
-- **⚡ Lightweight** — Local-first, no cloud dependencies
-- **🔒 Private** — All data stays on your machine
+- **📝 Markdown Export** — Clean, formatted files with YAML frontmatter (perfect for Obsidian/Notion).
+- **🛡️ Smart Deduplication** — Uses **Y-axis coordinate sorting** to perfectly reconstruct dialogue order, even when DOM is obfuscated.
+- **⚡ Native Performance** — Lightweight Chrome Extension + Python FastAPI backend.
+- **🔒 Privacy First** — All data stays on your machine. 0% data sent to the cloud.
 
 ### 🌐 Platform Support
 - ✅ **ChatGPT** (chatgpt.com)
 - ✅ **Gemini** (gemini.google.com)
-- ✅ **Claude** (claude.ai)
-- 🔜 **Poe** (extensible architecture)
+- 🔜 **Claude** (Coming soon)
 
 ---
 
 ## 📦 Installation
 
 ### Prerequisites
-- Python 3.10+
-- Windows OS (macOS/Linux support coming soon)
-- [Tampermonkey](https://www.tampermonkey.net/) browser extension
+- Windows OS (macOS/Linux support planned)
+- Chrome, Edge, or Brave Browser
 
-### Quick Start
+### Step 1: Install the Backend (The Brain)
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/yourusername/silent-ai-archiver.git
-   cd silent-ai-archiver
-   ```
+You have two options:
 
-2. **Install dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
+**Option A: Download Executable (Recommended for Users)**
+1. Go to the [Releases](https://github.com/yourusername/chatlog/releases) page.
+2. Download `ChatLog.exe`.
+3. Run it. You will see a small icon in your system tray.
 
-3. **Build the executable**
-   ```bash
-   build.bat
-   ```
-
-4. **Run the backend**
-   ```bash
-   dist\SilentArchiver.exe
-   ```
-   ✅ Check your system tray for a gray dot icon
-
-5. **Install the browser script**
-   - Open Tampermonkey dashboard
-   - Create new script
-   - Copy contents from `userscript/silent_archiver.user.js`
-   - Save and enable
-
-6. **Start archiving!**
-   - Visit ChatGPT or Gemini
-   - Chat normally — your conversations are being saved automatically
-
----
-
-## 🛠️ How It Works
-
-### Architecture Overview
-
-```mermaid
-graph LR
-    A[Browser<br/>Tampermonkey] -->|POST /save| B[FastAPI Server<br/>localhost:4321]
-    B --> C[Local Filesystem<br/>Markdown Files]
-    D[System Tray<br/>Gray Dot] -.monitors.- B
-    A -.indicates status.- E[3px Status Dot]
-```
-
-### The Magic: Zero-Interaction Flow
-
-1. **DOM Monitoring** — `MutationObserver` watches for new messages
-2. **Smart Debouncing** — Waits 5s after last change to avoid saving mid-response
-3. **Auto-Save Triggers**:
-   - ⏱️ Conversation idle for 5 seconds
-   - 🚪 Tab/window closing
-   - 🔀 Switching to different conversation
-4. **File Management** — Same conversation = overwrites file (always latest version)
-
-### File Organization
-
-```
-📁 ~/Documents/AI_Memory_Archive/
-├── 📅 2026-02-06/
-│   ├── 📄 ChatGPT_How to Learn Python.md
-│   └── 📄 Gemini_Data Analysis Tips.md
-└── 📅 2026-02-07/
-    └── 📄 ChatGPT_...
-```
-
-**File Format**:
-```markdown
----
-platform: ChatGPT
-title: How to Learn Python
-last_updated: 2026-02-06 16:30:45
----
-
-**User:**
-How do I quickly learn Python?
-
----
-
-**Assistant:**
-Here are some tips for learning Python...
-```
-
----
-
-## 📖 Documentation
-
-### Status Indicator
-
-The 3px dot in the top-right corner shows:
-- 🟢 **Green** — Last save successful
-- 🟡 **Yellow** — Waiting / saving in progress
-- 🔴 **Red** — Backend not running (start `SilentArchiver.exe`)
-
-### System Tray Menu
-
-Right-click the tray icon:
-- **Open Archive Folder** → Quick access to saved files
-- **Exit** → Close the application
-
-### Configuration
-
-**Change save location**: Edit `ARCHIVE_ROOT` in `src/main.py`
-```python
-ARCHIVE_ROOT = Path.home() / "Documents" / "AI_Memory_Archive"
-```
-
-**Adjust debounce delay**: Edit `DEBOUNCE_DELAY` in `userscript/silent_archiver.user.js`
-```javascript
-const DEBOUNCE_DELAY = 5000; // milliseconds
-```
-
----
-
-## 🧪 Testing
-
-Run the API test suite:
+**Option B: Run from Source (For Developers)**
 ```bash
-python test_api.py
-```
-
-Expected output:
-```
-[测试] /health 端点...
-[成功] 后端服务运行正常
-   响应: {'status': 'running'}
-
-[测试] /save 端点...
-[成功] 保存成功
-   文件路径: C:\Users\...\AI_Memory_Archive\...
-```
-
----
-
-## 🤝 Contributing
-
-We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
-
-**Quick Links**:
-- 🐛 [Report a Bug](https://github.com/yourusername/silent-ai-archiver/issues/new?labels=bug)
-- 💡 [Request a Feature](https://github.com/yourusername/silent-ai-archiver/issues/new?labels=enhancement)
-- 🌐 [Add Platform Support](CONTRIBUTING.md#adding-new-platforms)
-
----
-
-## 🗺️ Roadmap
-
-- [x] Claude.ai integration
-- [ ] macOS and Linux support
-- [ ] Poe.com support
-- [ ] Poe.com support
-- [ ] Search functionality across archives
-- [ ] Export to PDF/HTML
-- [ ] Configurable backup/compression
-- [ ] Multi-language UI
-
----
-
-## ❓ FAQ
-
-<details>
-<summary><b>Why is the status dot red?</b></summary>
-
-The backend isn't running. Make sure `SilentArchiver.exe` is active in your system tray.
-</details>
-
-<details>
-<summary><b>Can I use this with other AI platforms?</b></summary>
-
-Yes! The architecture is extensible. See [CONTRIBUTING.md](CONTRIBUTING.md#adding-new-platforms) for how to add new platforms.
-</details>
-
-<details>
-<summary><b>Where is my data stored?</b></summary>
-
-All conversations are saved locally in `~/Documents/AI_Memory_Archive/`. Nothing is sent to the cloud.
-</details>
-
-<details>
-<summary><b>Will this slow down my browser?</b></summary>
-
-No. The script uses efficient DOM monitoring and debouncing to minimize performance impact.
-</details>
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-## 🙏 Acknowledgments
-
-Built with:
-- [FastAPI](https://fastapi.tiangolo.com/) — Modern Python web framework
-- [Pystray](https://github.com/moses-palmer/pystray) — System tray integration
-- [PyInstaller](https://www.pyinstaller.org/) — Python to executable packaging
-
----
-
-<div align="center">
-
-**Enjoy zero-interaction archiving!** 🚀
-
-[⬆ Back to Top](#-silent-ai-archiver)
-
-</div>
+git clone [https://github.com/yourusername/chatlog.git](https://github.com/yourusername/chatlog.git)
+cd chatlog/backend
+pip install -r requirements.txt
+python main.py
